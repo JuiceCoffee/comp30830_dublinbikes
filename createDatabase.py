@@ -72,7 +72,7 @@ engine = create_engine("mysql+mysqlconnector://{}:{}@{}:{}/{}".format(USER, PASS
 metadata = sqla.MetaData()
 
 station = sqla.Table("station", metadata,
-    sqla.Column('address', sqla.String(256), nullable=False),
+    sqla.Column('address', sqla.String(256), nullable=False, primary_key=True),
     sqla.Column('banking', sqla.Integer),
     sqla.Column('bike_stands', sqla.Integer),
     sqla.Column('bonus', sqla.Integer),
@@ -87,8 +87,8 @@ station = sqla.Table("station", metadata,
 availability = sqla.Table("availability", metadata,
     sqla.Column('available_bikes', sqla.Integer),
     sqla.Column('available_bike_stands', sqla.Integer),
-    sqla.Column('number', sqla.Integer),
-    sqla.Column('last_update', sqla.Integer),
+    sqla.Column('number', sqla.Integer, primary_key=True),
+    sqla.Column('last_update', sqla.BigInteger),
 )
 
 try:
